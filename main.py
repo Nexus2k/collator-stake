@@ -1,10 +1,15 @@
 from operator import itemgetter
-from substrateinterface import SubstrateInterface, Keypair
-from substrateinterface.exceptions import SubstrateRequestException
+from substrateinterface import SubstrateInterface
 
-substrate = SubstrateInterface(
-    url="wss://rpc-0.zeitgeist.pm"
-)
+
+try:
+    substrate = SubstrateInterface(
+        url="wss://rpc-0.zeitgeist.pm"
+    )
+except ConnectionRefusedError:
+    print("⚠️ Remote RPC server didn't respond")
+    exit()
+
 collator_size = substrate.query(
     module='ParachainStaking',
     storage_function='TotalSelected'
