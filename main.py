@@ -4,7 +4,7 @@ from substrateinterface import SubstrateInterface
 
 try:
     substrate = SubstrateInterface(
-        url="wss://rpc-0.zeitgeist.pm"
+        url="wss://zeitgeist.api.onfinality.io/public-ws"
     )
 except ConnectionRefusedError:
     print("⚠️ Remote RPC server didn't respond")
