@@ -4,7 +4,7 @@ from substrateinterface import SubstrateInterface
 
 try:
     substrate = SubstrateInterface(
-        url="wss://zeitgeist.api.onfinality.io/public-ws"
+        url="wss://spiritnet.kilt.io"
     )
 except ConnectionRefusedError:
     print("⚠️ Remote RPC server didn't respond")
@@ -12,11 +12,11 @@ except ConnectionRefusedError:
 
 collator_size = substrate.query(
     module='ParachainStaking',
-    storage_function='TotalSelected'
+    storage_function='MaxSelectedCandidates'
 )
 collators = substrate.query(
     module='ParachainStaking',
-    storage_function='CandidatePool'
+    storage_function='TopCandidates'
 )
 chain_symbol = str(substrate.get_constant('Currency','GetNativeCurrencyId')).upper()
 chain_decimals = substrate.token_decimals
